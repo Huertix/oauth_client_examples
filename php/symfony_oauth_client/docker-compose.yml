@@ -1,0 +1,23 @@
+version: '2'
+services:
+  symfony:
+    build: .
+    environment:
+        XDEBUG_CONFIG: remote_host=192.168.211.69
+        PHP_IDE_CONFIG: "serverName=auth_test"
+        CLIENT_ID: "XXXXXXXX"
+        CLIENT_SECRET: "XXXXXXXX"
+        CCDID: "XXXXXXX"
+        CARFAX_GATEWAY: "https://was.carfax.eu/v0"
+
+    volumes:
+      - .:/app
+      - /app/vendor
+    ports:
+      - "8888:8888"
+
+    networks:
+      - oauth2server_app_net
+networks:
+  oauth2server_app_net:
+    external: true
